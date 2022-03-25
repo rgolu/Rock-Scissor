@@ -1,6 +1,6 @@
 function computerPlay(){
     let arr=["Paper","Rock","Scissors"];
-    let ind=Math.floor(Math.random()*(2)+0);
+    let ind=Math.floor(Math.random()*(3)+0);
     console.log(arr[ind]);
     return arr[ind];
 
@@ -38,7 +38,7 @@ function playRound(playerselection,computerSelection)
         }
         else if(playerselection=="Rock")
         {
-            if(computerSelection=="Paper")
+            if(computerSelection == "Paper")
             {
                 return "You Lose."
             }
@@ -47,28 +47,22 @@ function playRound(playerselection,computerSelection)
             }
         }
 }
-function game()
+let sc=Number(0),ttl=Number(0);
+function game(e)
 {
-    let sc1=0,sc2=0;
-    
-    for(let i=0;i<5;i++)
-    {
-        let out = playRound(prompt("Plese enter your card: ","Paper"),computerPlay());
-        if(out=="You Win.")
-        {
-            sc1++;
-        }else{
-            sc2++;
-        }
-        
-    }
-    if(sc1>sc2)
-        {
-            console.log("you are winner!.")
-        }else if(sc1==sc2)
-        {
-            console.log("draw");
-        }else{
-            console.log("You Lose.")
-        }
+    ttl+=1;
+    const playerSelection = e;
+    const computerSelection = computerPlay();
+    const result = playRound(playerSelection,computerSelection);
+    console.log(result);
+    const dp = document.querySelector('.result');
+    dp.value = result;
+    if(result == "You Win."){sc+=1;}
+    console.log(sc);
+    const score = document.querySelector('#score');
+    score.innerText = sc + " / " + ttl;
+
+
+   
+
 }
